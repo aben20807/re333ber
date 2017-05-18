@@ -56,9 +56,8 @@
             this.textboxUsername.Name = "textboxUsername";
             this.textboxUsername.Size = new System.Drawing.Size(321, 30);
             this.textboxUsername.TabIndex = 2;
-            this.textboxUsername.TextChanged += new System.EventHandler(this.textboxUsername_TextChanged);
             this.textboxUsername.Enter += new System.EventHandler(this.textboxUsername_Enter);
-            this.textboxUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textboxUsername_KeyPress);
+            this.textboxUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxUsername_KeyDown);
             this.textboxUsername.Leave += new System.EventHandler(this.textboxUsername_Leave);
             // 
             // textboxPassword
@@ -71,6 +70,7 @@
             this.textboxPassword.TabIndex = 3;
             this.textboxPassword.UseSystemPasswordChar = true;
             this.textboxPassword.Enter += new System.EventHandler(this.textboxPassword_Enter);
+            this.textboxPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxPassword_KeyDown);
             this.textboxPassword.Leave += new System.EventHandler(this.textboxPassword_Leave);
             // 
             // btnSignup
@@ -114,6 +114,7 @@
             this.Text = "re333ber";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSignin_FormClosed);
             this.Load += new System.EventHandler(this.FormSignin_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormSignin_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

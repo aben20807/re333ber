@@ -17,7 +17,6 @@ namespace RE333BER
         //public FormSignup formSignup;
         const string SUPERVISOR_USERNAME = "ADMIN";
         const string SUPERVISOR_PASSWORD = "0000";
-        public static string signinUsername = "";
         private bool isCapitalized = true;
         public FormSignin()
         {
@@ -25,7 +24,6 @@ namespace RE333BER
         }
         private void FormSignin_Load(object sender, EventArgs e)
         {
-            signinUsername = "";
             CenterToScreen();
             //button init
             Image imgSignup = Image.FromFile("../../pic/btn/btn_signUp.png");
@@ -51,9 +49,9 @@ namespace RE333BER
             textboxPassword.ForeColor = Color.Gray;
             textboxPassword.UseSystemPasswordChar = false;
             //member data init
-            //Member.memberData.Add(new Member("TOM", "123"));
-            //Member.memberData.Add(new Member("BEN", "456"));
-            //Member.memberData.Add(new Member("EVA", "789"));
+            Member.memberData.Add(new Member("TOM", "123"));
+            Member.memberData.Add(new Member("BEN", "456"));
+            Member.memberData.Add(new Member("EVA", "789"));
         }
 
         private void textboxUsername_Leave(object sender, EventArgs e)
@@ -101,74 +99,7 @@ namespace RE333BER
 
         private void btnSignin_Click(object sender, EventArgs e)
         {
-            if(textboxUsername.Text == SUPERVISOR_USERNAME && textboxPassword.Text == SUPERVISOR_PASSWORD)
-            {//sign in as supervisor
-                signinUsername = "supervisor";
-                //Member.signinMember = null;
-                textboxPassword.Text = "password";
-                textboxPassword.ForeColor = Color.Gray;
-                textboxPassword.UseSystemPasswordChar = false;
-                textboxUsername.Text = "username";
-                textboxUsername.ForeColor = Color.Gray;
-                //open form to manage
-                //formSupervisor = new FormSupervisor(this);
-                //formSupervisor.Show();
-                this.Hide();
-            }
-            else
-            {
-                bool isFind = false;
-                /*foreach (Member i in Member.memberData)
-                {//find member
-                    if (i.getUsername() == textboxUsername.Text && i.getPassword() == Member.hashSHA512(textboxPassword.Text))
-                    {
-                        //textBox init
-                        isFind = true;
-                        signinUsername = textboxUsername.Text;
-                        Member.signinMember = i;
-                        textboxPassword.Text = "password";
-                        textboxPassword.ForeColor = Color.Gray;
-                        textboxPassword.UseSystemPasswordChar = false;
-                        textboxUsername.Text = "username";
-                        textboxUsername.ForeColor = Color.Gray;
-                        //open form to book film
-                        formUser = new FormUser(this);
-                        formUser.Show();
-                        this.Hide();
-                    }
-                }*/
-                if(isFind == false)
-                {
-                    MessageBox.Show("Something wrong!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            
-        }
-
-        private void textboxUsername_TextChanged(object sender, EventArgs e)
-        {
-            //System.Diagnostics.Debug.WriteLine("C"+textboxUsername.Text.Length + "\n" + textboxUsername.Text);
-            if (isCapitalized == false && textboxUsername.Text.Length > 0)
-            {
-                textboxUsername.Text = "";
-                isCapitalized = true;
-                //System.Diagnostics.Debug.WriteLine(isCapitalized.ToString()+textboxUsername.Text.ElementAt(textboxUsername.Text.Length - 1)+ l);
-                //System.Diagnostics.Debug.WriteLine("D"+textboxUsername.Text.Length + "\n" + textboxUsername.Text);
-            }
-        }
-
-        private void textboxUsername_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar >= 'a' && e.KeyChar <= 'z')
-            {//detect if press a~z
-                MessageBox.Show("Each letter of username is capitalized\nError for : "+ e.KeyChar, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //System.Diagnostics.Debug.WriteLine(textboxUsername.Text.Length+"\n"+ textboxUsername.Text);
-                isCapitalized = false;
-            }
-            else
-            {
-                isCapitalized = true;
-            }
+            signin();
         }
 
         private void btnSignup_Click(object sender, EventArgs e)
@@ -183,6 +114,73 @@ namespace RE333BER
             //exit this program
             Application.Exit();
             Environment.Exit(0);
+        }
+
+        private void FormSignin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                signin();
+            }
+        }
+        private void textboxUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                signin();
+            }
+        }
+
+        private void textboxPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                signin();
+            }
+        }
+
+        private void signin()
+        {
+            if (textboxUsername.Text == SUPERVISOR_USERNAME && textboxPassword.Text == SUPERVISOR_PASSWORD)
+            {//sign in as supervisor
+                //Member.signinMember = null;
+                textboxPassword.Text = "password";
+                textboxPassword.ForeColor = Color.Gray;
+                textboxPassword.UseSystemPasswordChar = false;
+                textboxUsername.Text = "username";
+                textboxUsername.ForeColor = Color.Gray;
+                //open form to manage
+                //formSupervisor = new FormSupervisor(this);
+                //formSupervisor.Show();
+                this.Hide();
+            }
+            else
+            {
+                bool isFind = false;
+                foreach (Member i in Member.memberData)
+                {//find member
+                    if (i.Username == textboxUsername.Text && i.Password == Member.hashSHA512(textboxPassword.Text))
+                    {
+                        //textBox init
+                        isFind = true;
+                        Member.signinMember = i;
+                        textboxPassword.Text = "password";
+                        textboxPassword.ForeColor = Color.Gray;
+                        textboxPassword.UseSystemPasswordChar = false;
+                        textboxUsername.Text = "username";
+                        textboxUsername.ForeColor = Color.Gray;
+                        //open form to book film
+                        //formUser = new FormUser(this);
+                        //formUser.Show();
+                        //this.Hide();
+                        MessageBox.Show("Sign in success");
+                    }
+                }
+                if (isFind == false)
+                {
+                    MessageBox.Show("Something wrong!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
