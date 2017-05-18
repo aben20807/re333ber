@@ -1,6 +1,6 @@
 ﻿namespace RE333BER
 {
-    partial class Form1
+    partial class FormCard
     {
         /// <summary>
         /// 設計工具所需的變數。
@@ -28,9 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FormCard
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.Name = "FormCard";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
