@@ -1,4 +1,4 @@
-﻿namespace Homework2
+﻿namespace RE333BER
 {
     partial class FormSignin
     {

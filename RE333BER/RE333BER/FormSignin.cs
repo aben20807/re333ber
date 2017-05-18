@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Homework2
+namespace RE333BER
 {
     public partial class FormSignin : Form
     {
