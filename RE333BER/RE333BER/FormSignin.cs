@@ -17,7 +17,6 @@ namespace RE333BER
         //public FormSignup formSignup;
         const string SUPERVISOR_USERNAME = "ADMIN";
         const string SUPERVISOR_PASSWORD = "0000";
-        private bool isCapitalized = true;
         public FormSignin()
         {
             InitializeComponent();

@@ -31,7 +31,7 @@ namespace RE333BER
             set { _username = value; }
             get { return _username; }
         }
-        public String Password
+        public string Password
         {
             set { _password = hashSHA512(value); }
             get { return _password; }
