@@ -16,7 +16,7 @@ namespace RE333BER
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormSignin());
+            Application.Run(new FormMenu());
         }
     }
 }

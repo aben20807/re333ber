@@ -15,6 +15,9 @@ namespace RE333BER
         //public FormUser formUser;
         //public FormSupervisor formSupervisor;
         //public FormSignup formSignup;
+        private FormMenu formMenu;
+
+
         const string SUPERVISOR_USERNAME = "ADMIN";
         const string SUPERVISOR_PASSWORD = "0000";
         public FormSignin()
@@ -140,20 +143,22 @@ namespace RE333BER
 
         private void signin()
         {
-            if (textboxUsername.Text == SUPERVISOR_USERNAME && textboxPassword.Text == SUPERVISOR_PASSWORD)
-            {//sign in as supervisor
-                //Member.signinMember = null;
-                textboxPassword.Text = "password";
-                textboxPassword.ForeColor = Color.Gray;
-                textboxPassword.UseSystemPasswordChar = false;
-                textboxUsername.Text = "username";
-                textboxUsername.ForeColor = Color.Gray;
-                //open form to manage
-                //formSupervisor = new FormSupervisor(this);
-                //formSupervisor.Show();
-                this.Hide();
-            }
-            else
+            //if (textboxUsername.Text == SUPERVISOR_USERNAME && textboxPassword.Text == SUPERVISOR_PASSWORD)
+            //{//sign in as supervisor
+            //    //Member.signinMember = null;
+            //    textboxPassword.Text = "password";
+            //    textboxPassword.ForeColor = Color.Gray;
+            //    textboxPassword.UseSystemPasswordChar = false;
+            //    textboxUsername.Text = "username";
+            //    textboxUsername.ForeColor = Color.Gray;
+            //    //open form to manage
+            //    //formSupervisor = new FormSupervisor(this);
+            //    //formSupervisor.Show();
+            //    formMenu = new FormMenu();
+            //    formMenu.Show();
+            //    this.Hide();
+            //}
+            //else
             {
                 bool isFind = false;
                 foreach (Member i in Member.memberData)
@@ -172,6 +177,8 @@ namespace RE333BER
                         //formUser = new FormUser(this);
                         //formUser.Show();
                         //this.Hide();
+                        formMenu = new FormMenu();
+                        formMenu.Show();
                         MessageBox.Show("Sign in success");
                     }
                 }
