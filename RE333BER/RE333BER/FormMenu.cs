@@ -16,18 +16,23 @@ namespace RE333BER
 {
     public partial class FormMenu : Form
     {
-        public FormMenu()
+        private string signinUsername;
+        public FormMenu(string signinUsername)
         {
+            this.signinUsername = signinUsername;
             InitializeComponent();
         }
 
         private void FormMenu_Load(object sender, EventArgs e)
         {
             CenterToScreen();
-            
-            string CSVpath = "../../data"; // CSV file Path
+            // CSV file Path
+            string CSVpath = "../../data/" + signinUsername;
+            // If a folder does not exist then create it, else ignore
+            System.IO.Directory.CreateDirectory(CSVpath);
+            // Read all CSV in this folder
             var AllFiles = new DirectoryInfo(CSVpath).GetFiles("*.CSV");
-            foreach (var file in AllFiles) //read all CSV file
+            foreach (var file in AllFiles) // open and read all CSV file
             {
                 string fullFileName = "../../data/" + file.Name;
                 try

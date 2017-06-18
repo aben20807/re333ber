@@ -177,9 +177,9 @@ namespace RE333BER
                         //formUser = new FormUser(this);
                         //formUser.Show();
                         //this.Hide();
-                        formMenu = new FormMenu();
-                        formMenu.Show();
                         MessageBox.Show("Sign in success");
+                        formMenu = new FormMenu(i.Username);
+                        formMenu.Show();
                     }
                 }
                 if (isFind == false)
