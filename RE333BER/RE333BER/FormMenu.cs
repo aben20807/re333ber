@@ -17,8 +17,8 @@ namespace RE333BER
     public partial class FormMenu : Form
     {
         private string signinUsername;
-        private int numOfDeck;
         private static List<DataTable> deckList = new List<DataTable>();
+        private DataTable clearDataTable = new DataTable();
         public FormMenu(string signinUsername)
         {
             this.signinUsername = signinUsername;
@@ -37,7 +37,6 @@ namespace RE333BER
             
             // Read all CSV in this folder
             var AllFiles = new DirectoryInfo(CSVpath).GetFiles("*.CSV");
-            numOfDeck = AllFiles.Count();
             
             // init List
             deckList.Clear();
@@ -50,7 +49,7 @@ namespace RE333BER
                     DataTable dtTmp = ReadCsv(fullFileName);
                     deckList.Add(dtTmp);
                     checkedListBoxDeckView.Items.Add(file.Name);
-                    dataGridView1.DataSource = dtTmp;
+                    //dataGridView1.DataSource = dtTmp;
                 }
                 catch (Exception ex)
                 {
@@ -80,12 +79,18 @@ namespace RE333BER
 
         private void checkedListBoxDeckView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int selectCount = 0;
             for(int i = 0; i < checkedListBoxDeckView.Items.Count; i++)
             {
                 if (checkedListBoxDeckView.GetItemChecked(i))
                 {
                     dataGridView1.DataSource = deckList.ElementAt(i);
+                    selectCount++;
                 }
+            }
+            if(selectCount == 0)
+            {
+                dataGridView1.DataSource = clearDataTable;
             }
         }
     }
