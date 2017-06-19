@@ -51,9 +51,9 @@ namespace RE333BER
             textboxPassword.ForeColor = Color.Gray;
             textboxPassword.UseSystemPasswordChar = false;
             //member data init
-            Member.memberData.Add(new Member("TOM", "123"));
-            Member.memberData.Add(new Member("BEN", "456"));
-            Member.memberData.Add(new Member("EVA", "789"));
+            Member.memberList.Add(new Member("TOM", "123"));
+            Member.memberList.Add(new Member("BEN", "456"));
+            Member.memberList.Add(new Member("EVA", "789"));
         }
 
         private void textboxUsername_Leave(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace RE333BER
             //else
             {
                 bool isFind = false;
-                foreach (Member i in Member.memberData)
+                foreach (Member i in Member.memberList)
                 {//find member
                     if (i.Username == textboxUsername.Text && i.Password == Member.hashSHA512(textboxPassword.Text))
                     {

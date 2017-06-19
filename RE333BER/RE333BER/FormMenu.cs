@@ -17,6 +17,8 @@ namespace RE333BER
     public partial class FormMenu : Form
     {
         private string signinUsername;
+        private int numOfDeck;
+        private static List<DataTable> deckList = new List<DataTable>();
         public FormMenu(string signinUsername)
         {
             this.signinUsername = signinUsername;
@@ -26,18 +28,29 @@ namespace RE333BER
         private void FormMenu_Load(object sender, EventArgs e)
         {
             CenterToScreen();
+            
             // CSV file Path
             string CSVpath = "../../data/" + signinUsername;
+            
             // If a folder does not exist then create it, else ignore
             System.IO.Directory.CreateDirectory(CSVpath);
+            
             // Read all CSV in this folder
             var AllFiles = new DirectoryInfo(CSVpath).GetFiles("*.CSV");
+            numOfDeck = AllFiles.Count();
+            
+            // init List
+            deckList.Clear();
+            checkedListBoxDeckView.Items.Clear();
             foreach (var file in AllFiles) // open and read all CSV file
             {
-                string fullFileName = "../../data/" + file.Name;
+                string fullFileName = CSVpath + "/" + file.Name;
                 try
                 {
-                    dataGridView1.DataSource = ReadCsv(fullFileName);
+                    DataTable dtTmp = ReadCsv(fullFileName);
+                    deckList.Add(dtTmp);
+                    checkedListBoxDeckView.Items.Add(file.Name);
+                    dataGridView1.DataSource = dtTmp;
                 }
                 catch (Exception ex)
                 {
@@ -62,6 +75,17 @@ namespace RE333BER
                     }
                 }
                 return dt;
+            }
+        }
+
+        private void checkedListBoxDeckView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for(int i = 0; i < checkedListBoxDeckView.Items.Count; i++)
+            {
+                if (checkedListBoxDeckView.GetItemChecked(i))
+                {
+                    dataGridView1.DataSource = deckList.ElementAt(i);
+                }
             }
         }
     }

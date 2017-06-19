@@ -32,7 +32,7 @@
             this.buttonView = new System.Windows.Forms.Button();
             this.buttonImport = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxDeckView = new System.Windows.Forms.CheckedListBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cardLabel1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,17 +73,18 @@
             this.buttonDelete.Text = "刪除";
             this.buttonDelete.UseVisualStyleBackColor = true;
             // 
-            // checkedListBox1
+            // checkedListBoxDeckView
             // 
-            this.checkedListBox1.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.checkedListBoxDeckView.Font = new System.Drawing.Font("微軟正黑體", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.checkedListBoxDeckView.FormattingEnabled = true;
+            this.checkedListBoxDeckView.Items.AddRange(new object[] {
             "托福高級字彙",
             "日文N3單字"});
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 12);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(402, 532);
-            this.checkedListBox1.TabIndex = 2;
+            this.checkedListBoxDeckView.Location = new System.Drawing.Point(12, 12);
+            this.checkedListBoxDeckView.Name = "checkedListBoxDeckView";
+            this.checkedListBoxDeckView.Size = new System.Drawing.Size(402, 532);
+            this.checkedListBoxDeckView.TabIndex = 2;
+            this.checkedListBoxDeckView.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxDeckView_SelectedIndexChanged);
             // 
             // buttonStart
             // 
@@ -138,7 +139,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 534);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.checkedListBoxDeckView);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonImport);
@@ -157,7 +158,7 @@
         private System.Windows.Forms.Button buttonView;
         private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.Button buttonDelete;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBoxDeckView;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn cardLabel1DataGridViewTextBoxColumn;

@@ -9,7 +9,7 @@ namespace RE333BER
 {
     class Member
     {
-        public static List<Member> memberData = new List<Member>();
+        public static List<Member> memberList = new List<Member>();
         public static Member signinMember;
 
         private string _username;
