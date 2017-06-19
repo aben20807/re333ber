@@ -117,5 +117,18 @@ namespace RE333BER
                 MessageBox.Show(ex.Message + "\ncannot import", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBoxDeckView.Items.Count; i++)
+            {
+                if (checkedListBoxDeckView.GetItemChecked(i))
+                {
+                    deckList.RemoveAt(i);
+                    checkedListBoxDeckView.Items.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
     }
 }
