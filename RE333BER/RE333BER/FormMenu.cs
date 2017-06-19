@@ -80,17 +80,23 @@ namespace RE333BER
         private void checkedListBoxDeckView_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectCount = 0;
-            for(int i = 0; i < checkedListBoxDeckView.Items.Count; i++)
+            DataTable dtTmp = new DataTable("Data"); ;
+            for (int i = 0; i < checkedListBoxDeckView.Items.Count; i++)
             {
                 if (checkedListBoxDeckView.GetItemChecked(i))
                 {
-                    dataGridView1.DataSource = deckList.ElementAt(i);
+                    //dataGridView1.DataSource = deckList.ElementAt(i);
+                    dtTmp.Merge(deckList.ElementAt(i));
                     selectCount++;
                 }
             }
             if(selectCount == 0)
             {
                 dataGridView1.DataSource = clearDataTable;
+            }
+            else
+            {
+                dataGridView1.DataSource = dtTmp;
             }
         }
     }
