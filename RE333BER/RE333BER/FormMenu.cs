@@ -19,6 +19,7 @@ namespace RE333BER
         private string signinUsername;
         private static List<DataTable> deckList = new List<DataTable>();
         private DataTable clearDataTable = new DataTable();
+        private DataTable viewDataTable = new DataTable();
         public FormMenu(string signinUsername)
         {
             this.signinUsername = signinUsername;
@@ -95,6 +96,7 @@ namespace RE333BER
             else
             {
                 dataGridView1.DataSource = dtTmp;
+                viewDataTable = dtTmp;
             }
         }
 
@@ -129,6 +131,59 @@ namespace RE333BER
                     i--;
                 }
             }
+        }
+
+        private void buttonView_Click(object sender, EventArgs e)
+        {
+            ////DataRow[] foundRows;
+            //DataTable dtSearch = viewDataTable;
+            //dtSearch.DefaultView.RowFilter = ("TimeStamp < 5");
+            //dataGridView1.DataSource = dtSearch;
+
+            ////for (int i = 0; i < foundRows.Length; i++)
+            ////{
+            ////    Console.WriteLine(foundRows[i][0]);
+            ////}
+        }
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            int viewNumOfCard = 0;
+            if (comboBoxNumOfCard.Text == "全部")
+            {
+                viewNumOfCard = viewDataTable.Rows.Count;
+            }
+            else // number = all select deck
+            {
+                if (!(Int32.TryParse(comboBoxNumOfCard.Text, out viewNumOfCard)))
+                {// if can not let string transfer to int then show messagebox
+                    MessageBox.Show("String could not be parsed.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+
+            // Select cards to review
+            DataTable dtTmp = new DataTable();
+            if (viewDataTable.Rows.Count < viewNumOfCard)
+            {// if viewNumOfCard is too many that viewDataTable not contain
+                dtTmp = viewDataTable;
+            }
+            else
+            {
+                // Sort selected decks
+                DataView dv = new DataView();
+                dv.Table = viewDataTable;
+                dv.Sort = "TimeStamp ASC";
+                DataTable dtSort = dv.ToTable();
+                
+                // Copy the smaller timestamp to view
+                dtTmp = dtSort.Clone();
+                for (int i = 0; i < viewNumOfCard; i++)
+                {
+                    DataRow row = dtSort.Rows[i];
+                    dtTmp.ImportRow(row);
+                }
+            }
+            dataGridView1.DataSource = dtTmp;
         }
     }
 }

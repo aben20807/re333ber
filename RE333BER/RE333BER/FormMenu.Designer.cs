@@ -35,6 +35,8 @@
             this.checkedListBoxDeckView = new System.Windows.Forms.CheckedListBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBoxNumOfCard = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.cardLabel1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cardLabel2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeStampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +54,7 @@
             this.buttonView.TabIndex = 0;
             this.buttonView.Text = "檢視牌庫";
             this.buttonView.UseVisualStyleBackColor = true;
+            this.buttonView.Click += new System.EventHandler(this.buttonView_Click);
             // 
             // buttonImport
             // 
@@ -97,6 +100,7 @@
             this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "開始複習";
             this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // dataGridView1
             // 
@@ -112,6 +116,31 @@
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.Size = new System.Drawing.Size(498, 510);
             this.dataGridView1.TabIndex = 3;
+            // 
+            // comboBoxNumOfCard
+            // 
+            this.comboBoxNumOfCard.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBoxNumOfCard.FormattingEnabled = true;
+            this.comboBoxNumOfCard.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "20",
+            "30",
+            "全部"});
+            this.comboBoxNumOfCard.Location = new System.Drawing.Point(419, 451);
+            this.comboBoxNumOfCard.Name = "comboBoxNumOfCard";
+            this.comboBoxNumOfCard.Size = new System.Drawing.Size(121, 30);
+            this.comboBoxNumOfCard.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(420, 426);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 22);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "複習張數：";
             // 
             // cardLabel1DataGridViewTextBoxColumn
             // 
@@ -140,6 +169,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 534);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxNumOfCard);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.checkedListBoxDeckView);
             this.Controls.Add(this.buttonStart);
@@ -152,6 +183,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deckBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -167,5 +199,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cardLabel2DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeStampDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource deckBindingSource;
+        private System.Windows.Forms.ComboBox comboBoxNumOfCard;
+        private System.Windows.Forms.Label label1;
     }
 }
