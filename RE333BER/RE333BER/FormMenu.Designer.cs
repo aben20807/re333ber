@@ -62,6 +62,7 @@
             this.buttonImport.TabIndex = 1;
             this.buttonImport.Text = "匯入";
             this.buttonImport.UseVisualStyleBackColor = true;
+            this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
             // 
             // buttonDelete
             // 

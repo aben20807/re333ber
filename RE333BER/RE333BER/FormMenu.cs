@@ -48,8 +48,7 @@ namespace RE333BER
                 {
                     DataTable dtTmp = ReadCsv(fullFileName);
                     deckList.Add(dtTmp);
-                    checkedListBoxDeckView.Items.Add(file.Name);
-                    //dataGridView1.DataSource = dtTmp;
+                    checkedListBoxDeckView.Items.Add(Path.GetFileNameWithoutExtension(fullFileName));
                 }
                 catch (Exception ex)
                 {
@@ -85,7 +84,6 @@ namespace RE333BER
             {
                 if (checkedListBoxDeckView.GetItemChecked(i))
                 {
-                    //dataGridView1.DataSource = deckList.ElementAt(i);
                     dtTmp.Merge(deckList.ElementAt(i));
                     selectCount++;
                 }
@@ -97,6 +95,26 @@ namespace RE333BER
             else
             {
                 dataGridView1.DataSource = dtTmp;
+            }
+        }
+
+        private void buttonImport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "CSV|*.csv", ValidateNames = true, Multiselect = false })
+                {
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        DataTable dtTmp = ReadCsv(ofd.FileName);
+                        deckList.Add(dtTmp);
+                        checkedListBoxDeckView.Items.Add(Path.GetFileNameWithoutExtension(ofd.FileName));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\ncannot import", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
