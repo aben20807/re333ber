@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -88,23 +89,6 @@ namespace RE333BER
                 return dt;
             }
         }
-
-        //private DataTable Create(DataTable dt)
-        //{
-        //    DataTable dtNew = dt.Clone();
-        //    dtNew.Columns["CardLabel1"].DataType = typeof(string);
-        //    dtNew.Columns["CardLabel2"].DataType = typeof(string);
-        //    for (int i = 0; i < dt.Rows.Count; i++)
-        //    {
-        //        DataRow row = dtNew.NewRow();
-        //        for (int j = 0; j < dt.Columns.Count; j++)
-        //        {
-        //            row[j] = dt.Rows[i][j];
-        //        }
-        //        dtNew.Rows.Add(row);
-        //    }
-        //    return dtNew;
-        //}
 
         private void checkedListBoxDeckView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -194,25 +178,41 @@ namespace RE333BER
                     DataTable dtTmp = new DataTable();
                     if (viewDataTable.Rows.Count < viewNumOfCard)
                     {// if viewNumOfCard is too many that viewDataTable not contain
-                        dtTmp = viewDataTable;
+                        viewNumOfCard = viewDataTable.Rows.Count;
                     }
-                    else
-                    {
-                        // Sort selected decks
-                        DataView dv = new DataView();
-                        dv.Table = viewDataTable;
-                        dv.Sort = "TimeStamp ASC";
-                        DataTable dtSort = dv.ToTable();
+                    // Sort selected decks
+                    DataView dv = new DataView();
+                    dv.Table = viewDataTable;
+                    dv.Sort = "TimeStamp ASC";
+                    DataTable dtSort = dv.ToTable();
 
-                        // Copy the smaller timestamp to view
-                        dtTmp = dtSort.Clone();
-                        for (int i = 0; i < viewNumOfCard; i++)
-                        {
-                            DataRow row = dtSort.Rows[i];
-                            dtTmp.ImportRow(row);
-                        }
+                    // Copy the smaller timestamp to view
+                    dtTmp = dtSort.Clone();
+                    for (int i = 0; i < viewNumOfCard; i++)
+                    {
+                        DataRow row = dtSort.Rows[i];
+                        int rowTimestamp = 0;
+                        //Console.WriteLine(Int32.TryParse(row["TimeStamp"].ToString(), out rowTimestamp));
+                        //Console.WriteLine(rowTimestamp);
+                        row["TimeStamp"] = rowTimestamp + 1;
+                        dtTmp.ImportRow(row);
                     }
                     dataGridView1.DataSource = dtTmp;
+                }
+            }
+        }
+
+        private void checkedListBoxDeckView_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (checkedListBoxDeckView.CheckedItems.Count > 0)
+            {
+                for (int i = 0; i < checkedListBoxDeckView.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                    {
+                        this.checkedListBoxDeckView.SetItemCheckState(i,
+                        System.Windows.Forms.CheckState.Unchecked);
+                    }
                 }
             }
         }

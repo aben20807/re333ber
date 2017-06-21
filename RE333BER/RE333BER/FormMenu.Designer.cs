@@ -39,12 +39,12 @@
             this.checkedListBoxDeckView = new System.Windows.Forms.CheckedListBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBoxNumOfCard = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.cardLabel1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cardLabel2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timeStampDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deckBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboBoxNumOfCard = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.deckBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deckBindingSource)).BeginInit();
@@ -95,6 +95,7 @@
             this.checkedListBoxDeckView.Name = "checkedListBoxDeckView";
             this.checkedListBoxDeckView.Size = new System.Drawing.Size(402, 532);
             this.checkedListBoxDeckView.TabIndex = 2;
+            this.checkedListBoxDeckView.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxDeckView_ItemCheck);
             this.checkedListBoxDeckView.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxDeckView_SelectedIndexChanged);
             // 
             // buttonStart
@@ -149,6 +150,30 @@
             this.dataGridView1.Size = new System.Drawing.Size(498, 510);
             this.dataGridView1.TabIndex = 3;
             // 
+            // cardLabel1DataGridViewTextBoxColumn
+            // 
+            this.cardLabel1DataGridViewTextBoxColumn.DataPropertyName = "CardLabel1";
+            this.cardLabel1DataGridViewTextBoxColumn.HeaderText = "CardLabel1";
+            this.cardLabel1DataGridViewTextBoxColumn.Name = "cardLabel1DataGridViewTextBoxColumn";
+            // 
+            // cardLabel2DataGridViewTextBoxColumn
+            // 
+            this.cardLabel2DataGridViewTextBoxColumn.DataPropertyName = "CardLabel2";
+            this.cardLabel2DataGridViewTextBoxColumn.HeaderText = "CardLabel2";
+            this.cardLabel2DataGridViewTextBoxColumn.Name = "cardLabel2DataGridViewTextBoxColumn";
+            this.cardLabel2DataGridViewTextBoxColumn.Width = 150;
+            // 
+            // timeStampDataGridViewTextBoxColumn
+            // 
+            this.timeStampDataGridViewTextBoxColumn.DataPropertyName = "TimeStamp";
+            this.timeStampDataGridViewTextBoxColumn.HeaderText = "TimeStamp";
+            this.timeStampDataGridViewTextBoxColumn.Name = "timeStampDataGridViewTextBoxColumn";
+            this.timeStampDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // deckBindingSource
+            // 
+            this.deckBindingSource.DataSource = typeof(RE333BER.Deck);
+            // 
             // comboBoxNumOfCard
             // 
             this.comboBoxNumOfCard.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -173,28 +198,6 @@
             this.label1.Size = new System.Drawing.Size(95, 22);
             this.label1.TabIndex = 5;
             this.label1.Text = "複習張數：";
-            // 
-            // cardLabel1DataGridViewTextBoxColumn
-            // 
-            this.cardLabel1DataGridViewTextBoxColumn.DataPropertyName = "CardLabel1";
-            this.cardLabel1DataGridViewTextBoxColumn.HeaderText = "CardLabel1";
-            this.cardLabel1DataGridViewTextBoxColumn.Name = "cardLabel1DataGridViewTextBoxColumn";
-            // 
-            // cardLabel2DataGridViewTextBoxColumn
-            // 
-            this.cardLabel2DataGridViewTextBoxColumn.DataPropertyName = "CardLabel2";
-            this.cardLabel2DataGridViewTextBoxColumn.HeaderText = "CardLabel2";
-            this.cardLabel2DataGridViewTextBoxColumn.Name = "cardLabel2DataGridViewTextBoxColumn";
-            // 
-            // timeStampDataGridViewTextBoxColumn
-            // 
-            this.timeStampDataGridViewTextBoxColumn.DataPropertyName = "TimeStamp";
-            this.timeStampDataGridViewTextBoxColumn.HeaderText = "TimeStamp";
-            this.timeStampDataGridViewTextBoxColumn.Name = "timeStampDataGridViewTextBoxColumn";
-            // 
-            // deckBindingSource
-            // 
-            this.deckBindingSource.DataSource = typeof(RE333BER.Deck);
             // 
             // deckBindingSource1
             // 
