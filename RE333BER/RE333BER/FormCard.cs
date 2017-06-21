@@ -49,7 +49,6 @@ namespace RE333BER
 
         private void btnrem_Click(object sender, EventArgs e)
         {
-       //     index++;
             if (index < cardindex.Count-1)
             {
                 index++;
@@ -81,6 +80,5 @@ namespace RE333BER
                 ask.Text = cardquestion.ElementAt(cardindex.ElementAt(index));   
             }
         }
-
     }
 }

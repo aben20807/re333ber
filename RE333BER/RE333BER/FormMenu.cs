@@ -34,13 +34,6 @@ namespace RE333BER
         {
             CenterToScreen();
             deckBindingSource.DataSource = new List<Deck>();
-            //string[][] Array = new string[10][];
-            //for (int i = 0; i < 10; i++) // Set some values to test
-            //    Array[i] = new string[2] { "Value 1", "Value 2" };
-
-            //dataGridView1.DataSource = (from arr in Array select new { Col1 = arr[0], Col2 = arr[1] });
-
-
             // CSV file Path
             CSVpath = "../../data/" + signinUsername;
             
@@ -61,7 +54,6 @@ namespace RE333BER
                     DataTable dtTmp = ReadCsv(fullFileName);
                     deckList.Add(dtTmp);
                     checkedListBoxDeckView.Items.Add(Path.GetFileNameWithoutExtension(fullFileName));
-                    //dataGridView1.DataSource = dtTmp;
                 }
                 catch (Exception ex)
                 {
@@ -195,14 +187,11 @@ namespace RE333BER
                     {
                         DataRow row = dtSort.Rows[i];
                         int rowTimestamp = 0;
-                        //Console.WriteLine(Int32.TryParse(row["TimeStamp"].ToString(), out rowTimestamp));
                         Int32.TryParse(row["TimeStamp"].ToString(), out rowTimestamp);
-                        //Console.WriteLine(rowTimestamp);
                         row["TimeStamp"] = rowTimestamp + 1;
                         dtTmp.ImportRow(row);
                     }
                     //show
-                    //deckBindingSource.DataSource = dtTmp;
                     dataGridView1.DataSource = dtTmp;
 
                     string filename = "";
@@ -236,8 +225,6 @@ namespace RE333BER
                     
                     foreach (DataRow row in viewDataTable.Rows)
                     {
-                        //IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
-                        //sb.AppendLine(string.Join(",", fields));
                         IEnumerable<string> fields = row.ItemArray.Select(field =>
                             string.Concat("\"", field.ToString().Replace("\"", "\"\""), "\""));
                         sb.AppendLine(string.Join(",", fields));
@@ -249,8 +236,6 @@ namespace RE333BER
                     checkedListBoxDeckView.Items.Add(filename);
 
                     StringBuilder sb1 = new StringBuilder();
-                    //    IEnumerable<string> columnNames = dtTmp.Columns.Cast<DataColumn>().Select(column => column.ColumnName);
-                    //     sb.AppendLine(string.Join(",",columnNames));
                     foreach (DataRow row in dtTmp.Rows)
                     {
                         IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
