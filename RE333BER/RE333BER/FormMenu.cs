@@ -29,7 +29,14 @@ namespace RE333BER
         private void FormMenu_Load(object sender, EventArgs e)
         {
             CenterToScreen();
-            
+
+            //string[][] Array = new string[10][];
+            //for (int i = 0; i < 10; i++) // Set some values to test
+            //    Array[i] = new string[2] { "Value 1", "Value 2" };
+
+            //dataGridView1.DataSource = (from arr in Array select new { Col1 = arr[0], Col2 = arr[1] });
+
+
             // CSV file Path
             string CSVpath = "../../data/" + signinUsername;
             
@@ -50,6 +57,7 @@ namespace RE333BER
                     DataTable dtTmp = ReadCsv(fullFileName);
                     deckList.Add(dtTmp);
                     checkedListBoxDeckView.Items.Add(Path.GetFileNameWithoutExtension(fullFileName));
+                    //dataGridView1.DataSource = dtTmp;
                 }
                 catch (Exception ex)
                 {
@@ -61,9 +69,13 @@ namespace RE333BER
         public DataTable ReadCsv(string filename)
         {
             DataTable dt = new DataTable("Data");
+
+            dt.Columns.Add("CardLabel1", typeof(string));
+            dt.Columns.Add("CardLabel2", typeof(string));
+
             using (OleDbConnection cn = new OleDbConnection(
                 "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\"" +
-                    Path.GetDirectoryName(filename) + "\";Extended Properties=\'text;HDR=Yes;FMT=Delimited(,)';"))
+                    Path.GetDirectoryName(filename) + "\";Extended Properties='text;HDR=yes;IMEX=1;FMT=Delimited(,)';"))
             {
                 using (OleDbCommand cmd = new OleDbCommand(string.Format("select * from [{0}]", new FileInfo(filename).Name), cn))
                 {
@@ -76,6 +88,23 @@ namespace RE333BER
                 return dt;
             }
         }
+
+        //private DataTable Create(DataTable dt)
+        //{
+        //    DataTable dtNew = dt.Clone();
+        //    dtNew.Columns["CardLabel1"].DataType = typeof(string);
+        //    dtNew.Columns["CardLabel2"].DataType = typeof(string);
+        //    for (int i = 0; i < dt.Rows.Count; i++)
+        //    {
+        //        DataRow row = dtNew.NewRow();
+        //        for (int j = 0; j < dt.Columns.Count; j++)
+        //        {
+        //            row[j] = dt.Rows[i][j];
+        //        }
+        //        dtNew.Rows.Add(row);
+        //    }
+        //    return dtNew;
+        //}
 
         private void checkedListBoxDeckView_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -159,31 +188,33 @@ namespace RE333BER
                 {// if can not let string transfer to int then show messagebox
                     MessageBox.Show("String could not be parsed.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-            }
-
-            // Select cards to review
-            DataTable dtTmp = new DataTable();
-            if (viewDataTable.Rows.Count < viewNumOfCard)
-            {// if viewNumOfCard is too many that viewDataTable not contain
-                dtTmp = viewDataTable;
-            }
-            else
-            {
-                // Sort selected decks
-                DataView dv = new DataView();
-                dv.Table = viewDataTable;
-                dv.Sort = "TimeStamp ASC";
-                DataTable dtSort = dv.ToTable();
-                
-                // Copy the smaller timestamp to view
-                dtTmp = dtSort.Clone();
-                for (int i = 0; i < viewNumOfCard; i++)
+                else
                 {
-                    DataRow row = dtSort.Rows[i];
-                    dtTmp.ImportRow(row);
+                    // Select cards to review
+                    DataTable dtTmp = new DataTable();
+                    if (viewDataTable.Rows.Count < viewNumOfCard)
+                    {// if viewNumOfCard is too many that viewDataTable not contain
+                        dtTmp = viewDataTable;
+                    }
+                    else
+                    {
+                        // Sort selected decks
+                        DataView dv = new DataView();
+                        dv.Table = viewDataTable;
+                        dv.Sort = "TimeStamp ASC";
+                        DataTable dtSort = dv.ToTable();
+
+                        // Copy the smaller timestamp to view
+                        dtTmp = dtSort.Clone();
+                        for (int i = 0; i < viewNumOfCard; i++)
+                        {
+                            DataRow row = dtSort.Rows[i];
+                            dtTmp.ImportRow(row);
+                        }
+                    }
+                    dataGridView1.DataSource = dtTmp;
                 }
             }
-            dataGridView1.DataSource = dtTmp;
         }
     }
 }
