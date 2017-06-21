@@ -31,7 +31,6 @@
             this.btnSignin = new System.Windows.Forms.Button();
             this.textboxUsername = new System.Windows.Forms.TextBox();
             this.textboxPassword = new System.Windows.Forms.TextBox();
-            this.btnSignup = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -73,19 +72,6 @@
             this.textboxPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textboxPassword_KeyDown);
             this.textboxPassword.Leave += new System.EventHandler(this.textboxPassword_Leave);
             // 
-            // btnSignup
-            // 
-            this.btnSignup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSignup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSignup.Font = new System.Drawing.Font("微軟正黑體", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnSignup.Location = new System.Drawing.Point(422, 32);
-            this.btnSignup.Name = "btnSignup";
-            this.btnSignup.Size = new System.Drawing.Size(96, 34);
-            this.btnSignup.TabIndex = 6;
-            this.btnSignup.Text = "sign up";
-            this.btnSignup.UseVisualStyleBackColor = true;
-            this.btnSignup.Click += new System.EventHandler(this.btnSignup_Click);
-            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -108,7 +94,6 @@
             this.Controls.Add(this.textboxPassword);
             this.Controls.Add(this.textboxUsername);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSignup);
             this.Controls.Add(this.btnSignin);
             this.Name = "FormSignin";
             this.Text = "re333ber";
@@ -124,7 +109,6 @@
         private System.Windows.Forms.Button btnSignin;
         private System.Windows.Forms.TextBox textboxUsername;
         private System.Windows.Forms.TextBox textboxPassword;
-        private System.Windows.Forms.Button btnSignup;
         private System.Windows.Forms.Label btnCancel;
     }
 }

@@ -28,12 +28,6 @@ namespace RE333BER
         {
             CenterToScreen();
             //button init
-            Image imgSignup = Image.FromFile("../../pic/btn/btn_signUp.png");
-            btnSignup.Text = "";
-            btnSignup.Image = imgSignup;
-            btnSignup.Height = imgSignup.Height + 4;
-            btnSignup.Width = imgSignup.Width + 4;
-            btnSignup.Cursor = Cursors.Hand;
 
             Image imgSignin = Image.FromFile("../../pic/btn/btn_signIn.png");
             btnSignin.Text = "";
